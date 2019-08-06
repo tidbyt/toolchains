@@ -157,6 +157,7 @@ def _impl(ctx):
                             "-fPIE",
                             "-fdiagnostics-color=always",
                             "-no-canonical-prefixes",
+                            "--emscripten-cxx",
                         ],
                     ),
                 ],

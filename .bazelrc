@@ -24,3 +24,4 @@ build:esp32_64 --host_crosstool_top=@bazel_tools//tools/cpp:toolchain
 build:emscripten --crosstool_top=//tools/emscripten:toolchain
 build:emscripten --cpu=emscripten
 build:emscripten --host_crosstool_top=@bazel_tools//tools/cpp:toolchain
+build:emscripten --copt="-std=c++17"
