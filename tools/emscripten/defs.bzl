@@ -4,12 +4,10 @@ def emcc_binary(
         wasm = True,
         worker = False,
         linkopts = [],
-        defines = [],
         **kwargs):
     includejs = False
     includehtml = False
     linkopts = list(linkopts)
-    linkopts.append("-s EXTRA_EXPORTED_RUNTIME_METHODS='[\"ccall\", \"cwrap\"]'")
     if name.endswith(".html"):
         basename = name[:-5]
         includehtml = True
@@ -37,7 +35,7 @@ def emcc_binary(
         tarfile = name + ".tar"
 
         # we'll generate a tarfile and extract multiple outputs
-        native.cc_binary(name = tarfile, linkopts = linkopts, defines = defines, **kwargs)
+        native.cc_binary(name = tarfile, linkopts = linkopts, **kwargs)
         native.genrule(
             name = "emcc_extract_" + tarfile,
             srcs = [tarfile],
@@ -50,4 +48,3 @@ def emcc_binary(
         )
     else:
         native.cc_binary(name = name, linkopts = linkopts, **kwargs)
-
