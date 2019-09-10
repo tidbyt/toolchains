@@ -1,5 +1,3 @@
 #!/bin/bash --norc
 
-exec -a xtensa-esp32-elf-ld \
-    external/xtensa_esp32_elf_linux64/bin/xtensa-esp32-elf-ld \
-    "$@"
+exec external/xtensa_esp32_elf_linux64/bin/xtensa-esp32-elf-ld "$@"

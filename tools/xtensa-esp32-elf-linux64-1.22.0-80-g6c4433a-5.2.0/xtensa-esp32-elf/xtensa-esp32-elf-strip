@@ -1,5 +1,3 @@
 #!/bin/bash --norc
 
-exec -a xtensa-esp32-elf-strip \
-    external/xtensa_esp32_elf_linux64/bin/xtensa-esp32-elf-strip \
-    "$@"
+exec external/xtensa_esp32_elf_linux64/bin/xtensa-esp32-elf-strip "$@"
