@@ -1,0 +1,61 @@
+load("@rules_foreign_cc//tools/build_defs:cmake.bzl", "cmake_external")
+
+filegroup(
+    name = "srcs",
+    srcs = glob(["**"]),
+)
+
+cmake_external(
+   name = "idf_as_lib",
+
+   # Values to be passed as -Dkey=value on the CMake command line;
+   # here are serving to provide some CMake script configuration options
+   cache_entries = {
+       "PYTHON_DEPS_CHECKED": "1",
+       "ESP_PLATFORM": "1",
+   },
+
+   lib_source = ":srcs",
+
+   # We are selecting the resulting static library to be passed in C/C++ provider
+   # as the result of the build;
+   # However, the cmake_external dependants could use other artefacts provided by the build,
+   # according to their CMake script
+   static_libraries = [
+      "libbtdm_app.a",
+      "libc-psram-workaround.a",
+      "libc.a",
+      "libc_nano.a",
+      "libcoexist.a",
+      "libcore.a",
+      "libespnow.a",
+      "libg-psram-workaround.a",
+      "libg.a",
+      "libhal.a",
+      "libm-psram-workaround.a",
+      "libm.a",
+      "libmesh.a",
+      "libnet80211.a",
+      "libphy.a",
+      "libphyA.a",
+      "libphyB.a",
+      "libphy_marlin3.a",
+      "libpp.a",
+      "librtc.a",
+      "libsmartconfig.a",
+   ],
+
+   additional_tools = ["//esp32:esp_idf"],
+
+   env_vars = {
+      "IDF_PATH": "$EXT_BUILD_ROOT/esp32/esp_idf",
+      "COMPONENT_DIRS": "$EXT_BUILD_ROOT/esp32/esp_idf/components",
+   },
+
+   generate_crosstool_file = True,
+
+   postfix_script = """
+   mkdir -p "$INSTALLDIR"/lib
+   find . -name "*.a" -exec "cp {} $INSTALL_DIR/lib"
+   """,
+)
