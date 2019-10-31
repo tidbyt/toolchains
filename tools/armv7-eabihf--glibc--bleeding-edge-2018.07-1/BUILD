@@ -40,6 +40,7 @@ filegroup(
         "//tools/armv7-eabihf--glibc--bleeding-edge-2018.07-1/arm-linux:as",
         "//tools/armv7-eabihf--glibc--bleeding-edge-2018.07-1/arm-linux:gcc",
         "//tools/armv7-eabihf--glibc--bleeding-edge-2018.07-1/arm-linux:ld",
+        "@bootlin_arm_toolchain//:compiler_pieces",
     ],
 )
 

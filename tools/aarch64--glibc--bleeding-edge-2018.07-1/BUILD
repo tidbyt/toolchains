@@ -40,6 +40,7 @@ filegroup(
         "//tools/aarch64--glibc--bleeding-edge-2018.07-1/aarch64-linux:as",
         "//tools/aarch64--glibc--bleeding-edge-2018.07-1/aarch64-linux:gcc",
         "//tools/aarch64--glibc--bleeding-edge-2018.07-1/aarch64-linux:ld",
+        "@bootlin_aarch64_toolchain//:compiler_pieces",
     ],
 )
 

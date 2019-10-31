@@ -40,6 +40,7 @@ filegroup(
         "//tools/x86-64-core-i7--glibc--bleeding-edge-2018.07-1/x86_64-linux:as",
         "//tools/x86-64-core-i7--glibc--bleeding-edge-2018.07-1/x86_64-linux:gcc",
         "//tools/x86-64-core-i7--glibc--bleeding-edge-2018.07-1/x86_64-linux:ld",
+        "@bootlin_x86_64_toolchain//:compiler_pieces",
     ],
 )
 

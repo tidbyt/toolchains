@@ -40,6 +40,7 @@ filegroup(
         "//tools/xtensa-esp32-elf-linux64-1.22.0-80-g6c4433a-5.2.0/xtensa-esp32-elf:as",
         "//tools/xtensa-esp32-elf-linux64-1.22.0-80-g6c4433a-5.2.0/xtensa-esp32-elf:gcc",
         "//tools/xtensa-esp32-elf-linux64-1.22.0-80-g6c4433a-5.2.0/xtensa-esp32-elf:ld",
+        "@xtensa_esp32_elf_linux64//:compiler_pieces",
     ],
 )
 

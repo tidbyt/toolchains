@@ -40,6 +40,7 @@ filegroup(
         "//tools/x86-i686--glibc--bleeding-edge-2018.07-1/i686-linux:as",
         "//tools/x86-i686--glibc--bleeding-edge-2018.07-1/i686-linux:gcc",
         "//tools/x86-i686--glibc--bleeding-edge-2018.07-1/i686-linux:ld",
+        "@bootlin_i686_toolchain//:compiler_pieces",
     ],
 )
 
