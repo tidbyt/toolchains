@@ -1,0 +1,39 @@
+load("@rules_foreign_cc//tools/build_defs:cmake.bzl", "cmake_external")
+
+filegroup(
+    name = "srcs",
+    srcs = glob(["**"]),
+)
+
+cmake_external(
+   name = "hello_world",
+
+   # Values to be passed as -Dkey=value on the CMake command line;
+   # here are serving to provide some CMake script configuration options
+   cache_entries = {
+       "PYTHON_DEPS_CHECKED": "1",
+       "ESP_PLATFORM": "1",
+   },
+
+   lib_source = ":srcs",
+
+   # We are selecting the resulting static library to be passed in C/C++ provider
+   # as the result of the build;
+   # However, the cmake_external dependants could use other artefacts provided by the build,
+   # according to their CMake script
+   binaries = ["hello-world.bin"],
+
+   additional_tools = ["//esp-idf:all"],
+
+   env_vars = {
+      "IDF_PATH": "$EXT_BUILD_ROOT/esp-idf",
+      "COMPONENT_DIRS": "$EXT_BUILD_ROOT/esp-idf/components",
+   },
+
+   generate_crosstool_file = True,
+
+   postfix_script = """
+   mkdir -p "$INSTALLDIR"/bin
+   cp *.bin "$INSTALLDIR"/bin
+   """,
+)
